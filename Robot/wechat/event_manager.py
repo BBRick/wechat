@@ -60,8 +60,13 @@ class event_manager(object):
             self.dealwith_kafkaMsg(e, key=key)
 
     def dealwith_wechatMsg(self, msg):
-        msgText = msg['Text']
-        nickName = msg['User']['NickName']
+	msgText = ""
+	nickName = ""
+	if msg.has_key('Text'):
+       	     msgText = msg['Text']
+	if msg.has_key('User'):
+	     if msg['User'].has_key('NickName'):
+  	        nickName = msg['User']['NickName']
         if msgText.find(config.EVALUTE_IDENTIFIER) > -1:
             word_list = jieba.lcut(msgText)
             resultList = []
@@ -80,10 +85,10 @@ class event_manager(object):
         elif msgText.find(config.EVALUTE_IDENTIFIER):
             if self.endRecordMap.has_key(nickName):
                 self.dealwith_endrecord(msg, True)
-        else:
-            if msgText > 64 & msgText < 69:
+        elif msgText.__len__() == 1:
+            if ord(msgText) > 64 & ord(msgText) < 69:
                 self.dealwith_endrecord(msg, False)
-            elif msgText > 96 & msgText < 101:
+            elif ord(msgText) > 96 & ord(msgText) < 101:
                 self.dealwith_endrecord(msg, False)
             pass
 
@@ -106,7 +111,7 @@ class event_manager(object):
             e = {'msg':mes,
                 'account':account
             }
-            self.robotCon.send(e)
+           # self.robotCon.send(e)
             pass
         else:
             pass

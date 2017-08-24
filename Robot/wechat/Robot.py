@@ -46,10 +46,10 @@ def receiveGrope(msg):
     sendCon.send(msg)
     pass
 
-@cr.msg_register('Friends')
-def receiveAddFriend(msg):
-    msg.user.verify()
-    msg.user.send('欢迎添加机器人 王者小机 !')
+#@cr.msg_register('Friends')
+#def receiveAddFriend(msg):
+#    msg.user.verify()
+#    msg.user.send('欢迎添加机器人 王者小机 !')
 
 def sendMsgToGroup(msg, groupName):
     group = cr.search_chatrooms(name=groupName)
