@@ -38,7 +38,7 @@ def recall(ev, fd, what, event):
 
 @cr.msg_register('Text')
 def receiveMsg(msg):
-    sendCon.send(msg)
+    cr.send(msg="不要调戏调戏机器人哦~n(*≧▽≦*)n", toUserName=msg['FromUserName'])
     pass
 
 @cr.msg_register('Text', isGroupChat=True)
