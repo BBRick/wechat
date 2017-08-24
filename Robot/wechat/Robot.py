@@ -38,7 +38,7 @@ def recall(ev, fd, what, event):
 
 @cr.msg_register('Text')
 def receiveMsg(msg):
-    sendCon.send(msg)
+    
     pass
 
 @cr.msg_register('Text', isGroupChat=True)
