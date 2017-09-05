@@ -34,11 +34,13 @@ def creatEvent():
 def recall(ev, fd, what, event):
     e = event.recv()
     if e:
+   	print 'wechat receive', e
         sendMsgToContanct(e['msg'], account=e['account'])
 
 @cr.msg_register('Text')
 def receiveMsg(msg):
-    
+#    cr.send(msg="不要调戏调戏机器人哦~n(*≧▽≦*)n", toUserName=msg['FromUserName'])
+
     pass
 
 @cr.msg_register('Text', isGroupChat=True)
@@ -59,6 +61,8 @@ def sendMsgToGroup(msg, groupName):
 
 def sendMsgToContanct(msg, account):
     contact = cr.search_friends(name=account)
+    print cr.memberList
+    print contact
     if contact:
 	cr.send(msg, toUserName=contact[0]['UserName'])
 

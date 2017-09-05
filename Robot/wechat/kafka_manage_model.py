@@ -24,7 +24,7 @@ class KafkaProducerManager(object):
 
     def push_data(self, parmas_message, key=None):
         producer = self.producer
-        producer.send(topic=self.coname, parmas_message=parmas_message.encode('utf-8'), key=key)
+        producer.send(topic=self.coname, value=parmas_message.encode('utf-8'), key=key)
         producer.flush()
 
 
@@ -54,7 +54,7 @@ class KafkaConsumerManager(object):
         """
         连接取数据
         """
-       
+        print 'connect read kafka'
 	while True:
             consumer =  KafkaConsumer(bootstrap_servers=self.host)
             consumer.subscribe([self.coname])

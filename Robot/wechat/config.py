@@ -10,9 +10,9 @@ DIR = os.getcwd()
 DEFAULT_QR = 'QR.png'
 TIMEOUT = (10, 60)
 
-USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'
-KAFKA_HOST = '122.144.169.214'
-KAFKA_RECEIVE_TOPIC = 'specialplane_push_robot'
+USER_AGENT = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50'
+KAFKA_HOST = 'kafka.t.smartdata-x.com'
+KAFKA_RECEIVE_TOPIC = 'specialplane_hz_push_robot'
 KAFKA_SEND_TOPIC = 'specialplane_hz_push_service'
 SQL_HOST = '139.224.18.190'
 SQL_USER = 'smobaspecialplane'

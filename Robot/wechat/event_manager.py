@@ -14,7 +14,6 @@ import os
 class event_manager(object):
     def __init__(self, robotCon):
         self.robotCon = robotCon
-        print robotCon
     #    pdb.set_trace()
 	self.producer = KafkaProducerManager(client=1, host=config.KAFKA_HOST, coname=config.KAFKA_SEND_TOPIC)
         self.pool = Pool(processes=5)
@@ -23,7 +22,6 @@ class event_manager(object):
 
 
     def setConfig(self):
-	print os.getpid()
         t = threading.Thread(target=self.creatEvent)
         t.start()
         kafkaProcess = Process(target=self.setkafka)
@@ -38,12 +36,12 @@ class event_manager(object):
         consumer.run()
 
     def callbackMsg(self,key, value):
-	print os.getpid()
+	print 'receice kakfa', key, value
         self.pool.apply_async(self.dealwith_event(e=json.loads(value), type=1, key=key), (value,))
 
     def creatEvent(self):
-        kafkaProcess = Process(target=self.setkafka)
-        kafkaProcess.start()
+       # kafkaProcess = Process(target=self.setkafka)
+       # kafkaProcess.start()
         base = self.initLibEvent()
         ev = libevent.Event(base, self.robotCon.fileno(), libevent.EV_READ | libevent.EV_PERSIST, self.recall, self.robotCon)
         ev.add(0.01)
